@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-1{fill:#2a3593}.cls-2{fill:#fff}
+        </style>
+    </defs>
+    <g id="ic_EMR" transform="translate(-8.443 -8.443)">
+        <ellipse id="Ellipse_944" cx="12" cy="12" class="cls-1" data-name="Ellipse 944" rx="12" ry="12" transform="rotate(90 12 20.444)"/>
+        <g id="round-laptop_mac-24px" transform="translate(12.031 11.428)">
+            <path id="Path_3209" d="M14.017 13.512a1.4 1.4 0 0 0 1.395-1.4l.006-7.712a1.406 1.406 0 0 0-1.4-1.4H2.8a1.406 1.406 0 0 0-1.4 1.4v7.709a1.406 1.406 0 0 0 1.4 1.4H0a1.406 1.406 0 0 0 1.4 1.4h14.018a1.406 1.406 0 0 0 1.4-1.4zM3.5 4.4h9.812a.7.7 0 0 1 .7.7v6.31a.7.7 0 0 1-.7.7H3.5a.7.7 0 0 1-.7-.7V5.1a.7.7 0 0 1 .7-.7zm4.91 9.813a.7.7 0 1 1 .7-.7.7.7 0 0 1-.7.7z" class="cls-2" data-name="Path 3209"/>
+        </g>
+    </g>
+</svg>

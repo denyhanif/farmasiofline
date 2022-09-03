@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.918" height="21.918" viewBox="0 0 21.918 21.918">
+    <defs>
+        <style>
+            .cls-1{fill:#263ae3;stroke:#fff;stroke-width:2px}.cls-2{fill:#fff}
+        </style>
+    </defs>
+    <g id="ic_Male" transform="translate(-536.082 -448.082)">
+        <circle id="Ellipse_2653" cx="9.959" cy="9.959" r="9.959" class="cls-1" data-name="Ellipse 2653" transform="translate(537.082 449.082)"/>
+        <path id="ic_Male-2" d="M3.5 13.508A3.725 3.725 0 0 1 6.679 6.8L8.7 3.29l-2.072.51a.645.645 0 0 1-.766-.443.583.583 0 0 1 .425-.736L9.644 1.8a.644.644 0 0 1 .513.1.642.642 0 0 1 .338.4l.966 3.323a.582.582 0 0 1-.425.735.644.644 0 0 1-.766-.458l-.564-1.94L7.721 7.4a3.726 3.726 0 0 1-1.394 6.48 3.742 3.742 0 0 1-.969.128 3.7 3.7 0 0 1-1.858-.5zm-.284-4.467A2.481 2.481 0 1 0 5.369 7.8a2.487 2.487 0 0 0-2.153 1.241z" class="cls-2" data-name="ic_Male" transform="rotate(14.98 -1435.04 2285.495)"/>
+    </g>
+</svg>

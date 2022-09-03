@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.918" height="21.918" viewBox="0 0 21.918 21.918">
+    <defs>
+        <style>
+            .cls-1{fill:#d625c2;stroke:#fff;stroke-width:2px}.cls-2{fill:#fff}
+        </style>
+    </defs>
+    <g id="ic_Female" transform="translate(-508.082 -448.082)">
+        <circle id="Ellipse_2653" cx="9.959" cy="9.959" r="9.959" class="cls-1" data-name="Ellipse 2653" transform="translate(509.082 449.082)"/>
+        <path id="Union_171" d="M2.967 12.04V9.792H1.1a.586.586 0 1 1 0-1.172h1.867V6.976a3.509 3.509 0 1 1 1.173-.015v1.658h1.669a.586.586 0 1 1 0 1.172H4.14v2.249a.587.587 0 0 1-1.173 0zM1.175 3.508a2.339 2.339 0 1 0 2.339-2.339 2.341 2.341 0 0 0-2.339 2.339z" class="cls-2" data-name="Union 171" transform="translate(515.499 452.744)"/>
+    </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="ic_ScannedMR" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-1{fill:#f88805}.cls-2{fill:#fff}
+        </style>
+    </defs>
+    <ellipse id="Ellipse_1446" cx="12" cy="12" class="cls-1" data-name="Ellipse 1446" rx="12" ry="12"/>
+    <path id="Exclusion_182" d="M9.461 13.117H.43A.429.429 0 0 1 .118 13 .429.429 0 0 1 0 12.687V.43A.429.429 0 0 1 .118.118.429.429 0 0 1 .43 0H7.4v2.064a.431.431 0 0 0 .43.43h2.061v10.193a.407.407 0 0 1-.43.43zm-8.283-2.946v1.179h7.854v-1.179zm0-2.356v1.178h7.854V7.815zm0-2.356v1.178h7.854V5.459zM9.3 1.9H8.216a.226.226 0 0 1-.225-.225V.593L9.3 1.9z" class="cls-2" data-name="Exclusion 182" transform="translate(7.175 4.656)"/>
+</svg>

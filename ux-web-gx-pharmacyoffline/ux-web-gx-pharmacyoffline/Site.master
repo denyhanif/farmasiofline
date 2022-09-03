@@ -1,0 +1,247 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en" style="overflow: hidden">
+<head id="Head1" runat="server">
+    <title>Siloam Pharmacy</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css" />
+    <!-- Font icomoon -->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/style.css" />
+    <!-- Datepicker -->
+    <link rel="stylesheet" href="~/Content/plugins/datepicker/datepicker3.css" />
+    <!-- DropDown -->
+    <link rel="stylesheet" href="~/Content/plugins/select2/select2.min.css" />
+
+    <!-- Select Bootstrap -->
+    <link rel="stylesheet" href="~/Content/bootstrap-select/css/bootstrap-select.css" />
+    <!-- EMR-PharmacyOffline -->
+    <link rel="stylesheet" href="~/Content/EMR-PharmacyOffline.css" />
+    <!-- EMR-Doctor -->
+    <link rel="stylesheet" href="~/Content/EMR-Doctor.css" />
+    <!-- Mask -->
+    <link rel="stylesheet" href="~/Content/plugins/jasny-bootstrap/css/jasny-bootstrap.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.css" />
+    <link rel="stylesheet" href="~/Content/dist/css/skins/skin-blue-light.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <asp:ContentPlaceHolder ID="headContent" runat="server" />
+</head>
+
+<script type="text/javascript">
+    function navigationcollapse() {
+        //alert(document.cookie)
+        if (document.cookie == "sidebar-collapse") {
+            document.getElementById("bodysidebar").className = "hold-transition skin-blue-light sidebar-mini sidebar-collapse";
+        }
+        else {
+            document.getElementById("bodysidebar").className = "hold-transition skin-blue-light sidebar-mini";
+        }
+    }
+    function collapsebutton() {
+        if (document.getElementById("bodysidebar").className == "hold-transition skin-blue-light sidebar-mini sidebar-collapse") {
+            document.cookie = "sidebar-not-collapse";
+        }
+        else {
+            document.cookie = "sidebar-collapse"
+
+        }
+
+    }
+
+</script>
+
+
+<body id="bodysidebar" class="hold-transition skin-blue-light sidebar-mini sidebar-collapse" style="padding-top: 0px; width: 100%; min-height: 700px; margin-top: 0px; font-family: ro; vertical-align: top;">
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/Content/plugins/jQuery/jQuery-2.2.0.min.js" />
+                <asp:ScriptReference Path="~/Content/bootstrap/js/bootstrap.min.js" />
+                <asp:ScriptReference Path="~/Content/plugins/jasny-bootstrap/js/jasny-bootstrap.min.js" />
+                <asp:ScriptReference Path="~/Content/plugins/datepicker/bootstrap-datepicker.js" />
+                <asp:ScriptReference Path="~/Content/plugins/select2/select2.full.min.js" />
+                <asp:ScriptReference Path="~/Content/dist/js/app.min.js" />
+                <%--<asp:ScriptReference Path="~/Scripts/site.js" />--%>
+                <asp:ScriptReference Path="~/Content/bootstrap-select/js/bootstrap-select.js" />
+
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="wrapper">
+            <header class="main-header" style="position: fixed; width: 100%">
+                <!-- Logo -->
+                <a href="<%=ResolveUrl("~/Form/FormPrescription.aspx?") %>" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini" style="background-color: #383838">
+                        <img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic_Menu-white.svg") %>" /></span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg">
+                        <img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic_Logo_Big.png") %>" /></span>
+                </a>
+                <!-- Header Navbar -->
+                <nav class="navbar navbar-static-top darkGrey" role="navigation" style="background-color: #4d4d4d;">
+                    <!-- Sidebar toggle button-->
+                    <%--<a href="#" class="sidebar-toggle" id="menu" data-toggle="offcanvas" role="button" title="Expand/Minimize menu">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>--%>
+
+                    <div style="margin-bottom: -40px; margin-top: 15px; margin-left: 7px">
+                        <asp:Label runat="server" Text="OFFLINE" Font-Size="17px" Font-Names="Helvetica" ForeColor="White" Style="margin-top: 10px"></asp:Label>
+                    </div>
+
+
+                    <div class="navbar-custom-menu darkGrey">
+                        <ul class="nav navbar-nav darkGrey">
+                            <li></li>
+                            <li>&nbsp;
+                            </li>
+                            <li>
+                                <asp:HyperLink runat="server" ID="lbltime" Font-Size="12px" Font-Bold="true" ForeColor="White" Font-Names="Tahoma"></asp:HyperLink></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="height:50px;">
+                                    <%--<i class="fa fa-user">&nbsp;&nbsp;--%>
+                                        <asp:Label runat="server" Font-Bold="true" ID="lblUsername" Font-Names="Helvetica">dr. Doctor</asp:Label>
+                                        <asp:HiddenField runat="server" ID="hfUserID" />
+                                        <asp:HiddenField runat="server" ID="hfRoleID" />
+                                        <asp:HiddenField runat="server" ID="hfDoctorID" />
+                                        <asp:HiddenField runat="server" ID="hfUsername" />
+                                        <asp:HiddenField runat="server" ID="hfSettingsCompound" />
+                                        <asp:HiddenField runat="server" ID="hfFullName" />
+                                        <asp:HiddenField runat="server" ID="hfOrganization" />
+                                    <%--</i>--%>
+                                    &nbsp;&nbsp;
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
+                                <ul class="dropdown-menu bdrop">
+                                    <li hidden>
+                                        <a href="<%=ResolveUrl("~/Forms/Master/ChangePassword.aspx") %>" style="font-family: Arial, Helvetica, sans-serif">
+                                            <i class="fa fa-key fa-fw"></i>Change Password
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="<%=ResolveUrl("~/Form/Login.aspx?action=clear") %>" style="font-family: Arial, Helvetica, sans-serif">
+                                            <i class="fa fa-sign-out fa-fw"></i>Log Out
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <aside class="main-sidebar" style="position: fixed; background-color: #383838">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <ul class="sidebar-menu" id="menuList">
+                        <li id="Li4" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="ResultLink" NavigateUrl="~/Form/FormPrescription.aspx?" Style="padding: 7px; font-family: Helvetica, Arial, sans-serif;" CssClass="iconn-toblack">
+                                <i class="icon-ic_Prescription_black" style="font-size: 27px; padding: 10px 6px 10px 6px;"></i>
+                                <%--<img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic_Prescription_white.png") %>" style="padding-left:5px; padding-bottom:1px;padding-top:5px;text-align:center" />--%>
+                                <span style="color:black;">Prescription</span>
+                            </asp:HyperLink>
+                        </li>
+                        <li id="Li5" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="HyperLink1" NavigateUrl="~/Form/FormPatientHistory.aspx?" Style="padding: 8px; padding-top:9px; font-family: Helvetica, Arial, sans-serif" CssClass="iconn-toblack">
+                                <i class="icon-ic_PatientHistory_black" style="font-size: 24px; padding: 10px 6px 10px 0px;"></i>
+                                <%--<img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic_PatientHistory-white.svg") %>" style="padding-left:2px;padding-bottom:5px;padding-top:5px;text-align:center" />--%>
+                                <span style="color:black;">Patient History</span>
+                            </asp:HyperLink>
+                        </li>
+                        <li id="Li1" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="HyperLink2" NavigateUrl="~/Form/FormPatientHistoryLite.aspx?" Style="padding: 7px; padding-top:7px; font-family: Helvetica, Arial, sans-serif" CssClass="iconn-toblack">
+                                <i class="icon-ic-patient-history-lite_black" style="font-size: 27px; padding: 10px 6px 10px 3px;"></i>
+                                <%--<img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic-patient-history-lite.svg") %>" style="padding-left:0px;padding-bottom:5px;padding-top:5px;text-align:center" height="35px" width="35px" />--%>
+                                <span style="color:black;">Patient History Lite</span>
+                            </asp:HyperLink>
+                        </li>
+                        <li id="Li2" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="HyperLink3" NavigateUrl="~/Form/FormMedicationHistory.aspx" Style="padding: 7px; padding-top:7px; font-family: Helvetica, Arial, sans-serif" CssClass="iconn-toblack">
+                                <i class="icon-ic_MedicationHistory_black" style="font-size: 27px; padding: 10px 6px 10px 3px;"></i>
+                                <%--<img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic_MedicationHistory.png") %>" style="padding-left:0px;text-align:center" height="35px" width="35px" />--%>
+                                <span style="color:black;">Medication History</span>
+                            </asp:HyperLink>
+                        </li>
+                        <li id="Li3" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="HyperLink4" NavigateUrl="~/Form/FormPrintLabOrder.aspx" Style="padding: 9px; padding-top:7px; font-family: Helvetica, Arial, sans-serif" CssClass="iconn-toblack">
+                                <i class="fa fa-print" style="font-size: 27px; padding: 0px 0px 0px 3px;"></i>
+                                <%--<img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic_MedicationHistory.png") %>" style="padding-left:0px;text-align:center" height="35px" width="35px" />--%>
+                                <span style="color:black;">Print Lab Order</span>
+                            </asp:HyperLink>
+                        </li>
+                        <li id="Li6" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="HyperLink5" NavigateUrl="~/Form/FormBigPatientHistory.aspx" Style="padding: 9px; padding-top:7px; font-family: Helvetica, Arial, sans-serif" CssClass="iconn-toblack">
+                                <i class="icon-ic-patient-history-lite_black" style="font-size: 27px; padding: 10px 6px 10px 3px;"></i>
+                                <%--<img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic_MedicationHistory.png") %>" style="padding-left:0px;text-align:center" height="35px" width="35px" />--%>
+                                <span style="color:black;">All Patient History</span>
+                            </asp:HyperLink>
+                        </li>
+                        <li id="Li7" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="HyperLink6" NavigateUrl="~/Form/FormEncounterStatus.aspx" Style="padding: 9px; padding-top:7px; font-family: Helvetica, Arial, sans-serif" CssClass="iconn-toblack">
+                                <%--<i class="icon-ic-patient-history-lite_black" style="font-size: 27px; padding: 10px 6px 10px 3px;"></i>--%>
+                                <img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/ic-checkdouble.svg") %>" style="height:28px;width:38px" />
+                                <span style="color:black;">Encounter Status</span>
+                            </asp:HyperLink>
+                        </li>
+                        <li id="Li8" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="HyperLink7" NavigateUrl="~/Form/FormScanDocument.aspx" Style="padding: 9px; padding-top:7px; font-family: Helvetica, Arial, sans-serif" CssClass="iconn-toblack">
+                                <i class="fa fa-upload" style="font-size: 27px; padding: 0px 0px 0px 3px;"></i>
+                                <span style="color:black;">Scan & Upload Doc.</span>
+                            </asp:HyperLink>
+                        </li>
+                        <li id="Li9" runat="server" visible="true">
+                            <asp:HyperLink runat="server" ID="HyperLink8" NavigateUrl="~/Form/FormWorklistIpd.aspx" Style="padding: 9px; padding-top:7px; font-family: Helvetica, Arial, sans-serif" CssClass="iconn-toblack">
+                                <%--<i class="icon-ic-patient-history-lite_black" style="font-size: 27px; padding: 10px 6px 10px 3px;"></i>--%>
+                                <img src="<%= Page.ResolveClientUrl("~/Images/NavigationMenu/icon_0_discharge.svg") %>" style="height:28px;width:38px" />
+                                <span style="color:black;">Discharge</span>
+                            </asp:HyperLink>
+                        </li>
+                    </ul>
+                    <!-- Sidebar Menu -->
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper" style="padding-top: 50px; background-color: #cdd2dd;">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            </div>
+            <!-- /.content-wrapper -->
+
+            <!-- Main Footer -->
+            <%--  <footer class="main-footer box-header with-border" style="height:40px">
+                <strong style="text-align:right">Copyright Siloam Hospitals Group &copy; 2018</strong> All rights reserved.
+            </footer>--%>
+        </div>
+    </form>
+
+    <style type="text/css">
+        .bdrop {
+            line-height: 2;
+            color: #333;
+            white-space: nowrap;
+            box-shadow: 0 4px 2px -2px gray;
+            border-width: 2px;
+        }
+
+        .darkGrey {
+            background-color: #4d4d4d;
+        }
+    </style>
+</body>
+
+
+</html>

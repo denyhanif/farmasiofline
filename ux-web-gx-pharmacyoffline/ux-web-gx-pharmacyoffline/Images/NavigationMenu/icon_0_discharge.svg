@@ -1,0 +1,27 @@
+<svg id="icon_0_discharge" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="_icon_PH_" data-name="[icon PH]" width="24" height="24" fill="none" opacity="0.2"/>
+  <g id="Group_9803" data-name="Group 9803" transform="translate(-8 -8.44)">
+    <g id="Rectangle_11825" data-name="Rectangle 11825" transform="translate(28.5 25.44)" fill="#171717" stroke="#fff" stroke-width="1.5">
+      <rect width="1.5" height="4" rx="0.75" stroke="none"/>
+      <rect x="0.75" y="0.75" height="2.5" fill="none"/>
+    </g>
+    <g id="Rectangle_11826" data-name="Rectangle 11826" transform="translate(10 21.94)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.5">
+      <path d="M0,0H16a4,4,0,0,1,4,4V6a0,0,0,0,1,0,0H0A0,0,0,0,1,0,6V0A0,0,0,0,1,0,0Z" stroke="none"/>
+      <path d="M1.5.75H16A3.25,3.25,0,0,1,19.25,4v.5a.75.75,0,0,1-.75.75H1.5A.75.75,0,0,1,.75,4.5v-3A.75.75,0,0,1,1.5.75Z" fill="none"/>
+    </g>
+    <g id="Path_637967" data-name="Path 637967" transform="translate(10 18.44)" fill="none">
+      <path d="M0,0H3A5,5,0,0,1,8,5H0Z" stroke="none"/>
+      <path d="M 1.5 1.5 L 1.5 3.5 L 6.162028789520264 3.5 C 5.599322319030762 2.318458795547485 4.393483638763428 1.5 3 1.5 L 1.5 1.5 M 0 0 L 3 0 C 5.761429786682129 0 8 2.238569974899292 8 5 L 0 5 L 0 0 Z" stroke="none" fill="#fff"/>
+    </g>
+    <g id="Rectangle_11828" data-name="Rectangle 11828" transform="translate(10 16.44)" fill="#171717" stroke="#fff" stroke-width="1.5">
+      <rect width="1.5" height="13" rx="0.75" stroke="none"/>
+      <rect x="0.75" y="0.75" height="11.5" fill="none"/>
+    </g>
+    <path id="Path_35389" data-name="Path 35389" d="M22,18.94h0a4,4,0,0,1,4-4h3" transform="translate(0 -1)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_35390" data-name="Path 35390" d="M26.5,12.44l2.5,2.5-2.5,2.5" transform="translate(0 -1)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <g id="Rectangle_11829" data-name="Rectangle 11829" transform="translate(23 22.44)" fill="#171717" stroke="#fff" stroke-width="1.5">
+      <rect width="1.5" height="5" rx="0.75" stroke="none"/>
+      <rect x="0.75" y="0.75" height="3.5" fill="none"/>
+    </g>
+  </g>
+</svg>

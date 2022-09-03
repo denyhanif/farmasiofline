@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ux-web-gx-pharmacyoffline", "ux-web-gx-pharmacyoffline", "{00922006-5269-471E-BA46-E2A792D4865C}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_62383"
+		Debug.AspNetCompiler.PhysicalPath = "ux-web-gx-pharmacyoffline\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62383\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_62383"
+		Release.AspNetCompiler.PhysicalPath = "ux-web-gx-pharmacyoffline\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62383\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "62383"
+		SlnRelativePath = "ux-web-gx-pharmacyoffline\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00922006-5269-471E-BA46-E2A792D4865C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00922006-5269-471E-BA46-E2A792D4865C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C170D3E2-2ECF-4461-ACF3-A6F5581138FD}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://10.85.129.54:8080/tfs/defaultcollection
+		SccWebProject0 = true
+		SccProjectUniqueName0 = ux-web-gx-pharmacyoffline
+		SccProjectName0 = ux-web-gx-pharmacyoffline
+		SccAuxPath0 = http://10.85.129.54:8080/tfs/defaultcollection
+		SccLocalPath0 = ux-web-gx-pharmacyoffline
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectEnlistmentChoice0 = 2
+	EndGlobalSection
+EndGlobal
