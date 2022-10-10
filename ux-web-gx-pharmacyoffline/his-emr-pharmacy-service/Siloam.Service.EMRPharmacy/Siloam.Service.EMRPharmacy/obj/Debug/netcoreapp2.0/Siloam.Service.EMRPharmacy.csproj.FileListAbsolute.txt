@@ -1,0 +1,16 @@
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\bin\Debug\netcoreapp2.0\appsettings.Development.json
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\bin\Debug\netcoreapp2.0\appsettings.json
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\bin\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.deps.json
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\bin\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.runtimeconfig.json
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\bin\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.runtimeconfig.dev.json
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\bin\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.dll
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\bin\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.pdb
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.GeneratedMSBuildEditorConfig.editorconfig
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.AssemblyInfoInputs.cache
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.AssemblyInfo.cs
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.csproj.CoreCompileInputs.cache
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.dll
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.pdb
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.genruntimeconfig.cache
+E:\Kerja\his-emr-pharmacy-service\Siloam.Service.EMRPharmacy\Siloam.Service.EMRPharmacy\obj\Debug\netcoreapp2.0\Siloam.Service.EMRPharmacy.csproj.AssemblyReference.cache
