@@ -144,6 +144,8 @@
                 .header-table td {
                     border: 0;
                 }
+
+                .pagebreak { page-break-before: always;}
         </style>
 
         <div>
@@ -159,12 +161,13 @@
                                 <asp:Label runat="server" style="font-size: 20px; font-weight: bold;">PERMOHONAN KONSULTASI</asp:Label>
                                 <br />
                                 <tbody>
+                                <tbody>
                                     <tr style="border: solid 1px #cdced9; width: 100%;">
                                         <td style="width: 35%; background-color: #efefef;" class="itemtable-priview-title">
                                             <label style=" font-weight: bold; font-size: 14px">Kepada TS</label>
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
-                                            <asp:Label runat="server" ID="lblKepadaTS" Style="font-size: 14px;" Text='<%#Eval("DoctorReferral") %>'></asp:Label>
+                                            <asp:Label runat="server" ID="lblKepadaTS" Style="font-size: 14px;" Text='<%# String.Concat(Eval("DoctorReferral"), " - ", Eval("referral_type")) %>'></asp:Label>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -289,6 +292,7 @@
                                 </tbody>
                             </table>
                             <%-- =============================================== END SIGN ==================================================== --%>
+                            <div id="div_break_diagnostic" runat="server" class="pagebreak" visible='<%#Convert.ToInt32(Eval("CountData")) > Container.ItemIndex + 1 ? true : false %>'></div>
                         </ItemTemplate>
                     </asp:Repeater>
     

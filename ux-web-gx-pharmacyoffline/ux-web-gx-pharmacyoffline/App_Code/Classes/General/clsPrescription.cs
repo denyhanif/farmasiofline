@@ -63,4 +63,27 @@ public class clsPrescription
             return ex.Message;
         }
     }
+
+    public static async Task<string> getPrescriptionEdited(long OrganizationId,string EncounterId,long AdmissionId)
+    {
+        try
+        {
+            HttpClient orderSet = new HttpClient();
+            //orderSet.BaseAddress = new Uri(ConfigurationManager.AppSettings["urlPrescription"].ToString());
+            orderSet.BaseAddress = new Uri("http://localhost:56859/");
+            orderSet.DefaultRequestHeaders.Accept.Clear();
+            orderSet.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            ///prescriptionhistoryedited/{OrganizationId}/{EncounterId}/{AdmissionId
+            var task = Task.Run(async () =>
+            {
+                return await orderSet.GetAsync(string.Format($"/prescriptionhistoryedited/" +OrganizationId+ "/" + EncounterId+"/"+AdmissionId));
+            });
+
+            return task.Result.Content.ReadAsStringAsync().Result;
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+    }
 }

@@ -17,37 +17,37 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
         {
              var registryflag = ConfigurationManager.AppSettings["registryflag"].ToString();
 
-            if (registryflag == "1")
-            {
-                ConfigurationManager.AppSettings["urlPharmacy"] = SiloamConfig.Functions.GetValue("urlExtension").ToString();
-                ConfigurationManager.AppSettings["urlPrescription"] = SiloamConfig.Functions.GetValue("urlTransaction").ToString();
-                ConfigurationManager.AppSettings["urlFunctional"] = SiloamConfig.Functions.GetValue("urlMaster").ToString();
-                ConfigurationManager.AppSettings["urlRecord"] = SiloamConfig.Functions.GetValue("urlPharmacy").ToString();
-                ConfigurationManager.AppSettings["urlMaster"] = SiloamConfig.Functions.GetValue("urlMaster").ToString();
-                ConfigurationManager.AppSettings["urlHISDataCollection"] = SiloamConfig.Functions.GetValue("urlHISDataCollection").ToString();
-                ConfigurationManager.AppSettings["urlUserManagement"] = SiloamConfig.Functions.GetValue("urlUserManagement").ToString();
-                ConfigurationManager.AppSettings["DB_Emr"] = SiloamConfig.Functions.GetValue("DB_Emr").ToString();
-            }
-            if (Request.QueryString["PatientId"] != null && Request.QueryString["AdmissionId"] != null && Request.QueryString["EncounterId"] != null && Request.QueryString["OrganizationId"] != null)
-            {
-                long PatientId = long.Parse(Request.QueryString["PatientId"]);
-                long AdmissionId = long.Parse(Request.QueryString["AdmissionId"]);
-                string AdmissionNo = Request.QueryString["AdmissionNo"];
-                Guid EncounterId = Guid.Parse(Request.QueryString["EncounterId"]);
-                long OrganizationId = long.Parse(Request.QueryString["OrganizationId"]);
-                initializevalue(OrganizationId, Guid.Empty.ToString(), PatientId, AdmissionNo, EncounterId.ToString());
+            //if (registryflag == "1")
+            //{
+            //    ConfigurationManager.AppSettings["urlPharmacy"] = SiloamConfig.Functions.GetValue("urlExtension").ToString();
+            //    ConfigurationManager.AppSettings["urlPrescription"] = SiloamConfig.Functions.GetValue("urlTransaction").ToString();
+            //    ConfigurationManager.AppSettings["urlFunctional"] = SiloamConfig.Functions.GetValue("urlMaster").ToString();
+            //    ConfigurationManager.AppSettings["urlRecord"] = SiloamConfig.Functions.GetValue("urlPharmacy").ToString();
+            //    ConfigurationManager.AppSettings["urlMaster"] = SiloamConfig.Functions.GetValue("urlMaster").ToString();
+            //    ConfigurationManager.AppSettings["urlHISDataCollection"] = SiloamConfig.Functions.GetValue("urlHISDataCollection").ToString();
+            //    ConfigurationManager.AppSettings["urlUserManagement"] = SiloamConfig.Functions.GetValue("urlUserManagement").ToString();
+            //    ConfigurationManager.AppSettings["DB_Emr"] = SiloamConfig.Functions.GetValue("DB_Emr").ToString();
+            //}
+            //if (Request.QueryString["PatientId"] != null && Request.QueryString["AdmissionId"] != null && Request.QueryString["EncounterId"] != null && Request.QueryString["OrganizationId"] != null)
+            //{
+            //    long PatientId = long.Parse(Request.QueryString["PatientId"]);
+            //    long AdmissionId = long.Parse(Request.QueryString["AdmissionId"]);
+            //    string AdmissionNo = Request.QueryString["AdmissionNo"];
+            //    Guid EncounterId = Guid.Parse(Request.QueryString["EncounterId"]);
+            //    long OrganizationId = long.Parse(Request.QueryString["OrganizationId"]);
+            //    initializevalue(OrganizationId, Guid.Empty.ToString(), PatientId, AdmissionNo, EncounterId.ToString());
 
-            }
-            else
-            {
-                string close = @"<script type='text/javascript'>
-                                window.returnValue = true;
-                                window.close();
-                                </script>";
-                base.Response.Write(close);
-            }
+            //}
+            //else
+            //{
+            //    string close = @"<script type='text/javascript'>
+            //                    window.returnValue = true;
+            //                    window.close();
+            //                    </script>";
+            //    base.Response.Write(close);
+            //}
 
-            //initializevalue(2, Guid.Empty.ToString(), 2000002041401, "OPA2208290002", "a17b3fcc-5df6-4524-a7ec-f9d4bc4e8076");
+            initializevalue(2, Guid.Empty.ToString(), 2000002041117, "OPA2209060004", "39836279-1c7c-4a57-94fe-5125081c2f2c");
         }
     }
 
@@ -64,27 +64,32 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
                 lbl_dokter.Text = inpatientData.doctor_name;
                 lbl_diagnosis.Text = inpatientData.diagnosis;
                 //admisiondate
-                string[] separateDate = inpatientData.admission_date.Split(' ');
-                string splitDate = separateDate[0];
-                string splitTime = separateDate[1];
-                string timePM_AM = separateDate[2];
+                if (!string.IsNullOrEmpty(inpatientData.admission_date))
+                {
+                    string[] separateDate = inpatientData.admission_date.Split(' ');
+                    string splitDate = separateDate[0];
+                    string splitTime = separateDate[1];
+                    string timePM_AM = separateDate[2];
+                    string[] newadmdate = splitDate.Split('/');
+                    int dayadm = Convert.ToInt32(newadmdate[1].Trim());
+                    int monthadm = Convert.ToInt32(newadmdate[0].Trim());
+                    int yearadm = Convert.ToInt32(newadmdate[2].Trim());
+                    lbl_addmision_date.Text = new DateTime(yearadm, monthadm, dayadm).ToString("dd MMMM yyyy");
+                    lbl_addmision_time.Text = $"{splitTime.Substring(0, splitTime.Length - 3)} {timePM_AM}";
+                }
+                else
+                {
+                    lbl_addmision_date.Text =" - ";
+                    lbl_addmision_time.Text = " - ";
+                }
 
-
-                string[] newadmdate = splitDate.Split('/');
-                int dayadm = Convert.ToInt32(newadmdate[1].Trim());
-                int monthadm = Convert.ToInt32(newadmdate[0].Trim());
-                int yearadm = Convert.ToInt32(newadmdate[2].Trim());
-
-
-
-                lbl_addmision_date.Text = new DateTime(yearadm, monthadm, dayadm).ToString("dd MMMM yyyy");
-
-                lbl_addmision_time.Text = $"{splitTime.Substring(0, splitTime.Length - 3)} {timePM_AM}";
+                
 
                 //dateTanggal Perkiraan Operasi/TIndakan
                 if (inpatientData.operation_schedule_header.operation_schedule_date != null)
                 {
                     lbl_tglTindakan.Text = DateTime.Parse(inpatientData.operation_schedule_header.operation_schedule_date.Substring(0, inpatientData.operation_schedule_header.operation_schedule_date.Length - 9).Trim()).ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
+
                     lbl_waktuTindakan.Text = DateTime.ParseExact(inpatientData.operation_schedule_header.incision_time, "HH:mm:ss", CultureInfo.CurrentCulture).ToString("hh:mm tt");
 
                 }
@@ -92,15 +97,21 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
                 //jam menit
                 var getFirstEstimateTime = inpatientData.operation_procedures.Where(x => x.operation_procedure_id != null).FirstOrDefault();
 
+                //nama operasi
                 if (inpatientData.operation_procedures.Count() > 0)
                 {
                     lbl_jamoperasi.Text = (Convert.ToInt32(getFirstEstimateTime.procedure_estimate_time) / 60).ToString();
                     lbl_menitoperasi.Text = (Convert.ToInt32(getFirstEstimateTime.procedure_estimate_time) % 60).ToString();
-                    foreach (var a in inpatientData.operation_procedures)
-                    {
-                        lbl_namaoperasi.Text += a.procedure_name + " , ";
 
-                    }
+                    DataTable dtprocedure = Helper.ToDataTable(inpatientData.operation_procedures);
+                    rpt_namaoperasi.DataSource = dtprocedure;
+                    rpt_namaoperasi.DataBind();
+                    lbl_namaoperasi_no.Visible = false;
+                    up_inpatient.Update();
+                }
+                else
+                {
+                    lbl_namaoperasi_no.Visible = true;
                 }
 
               
@@ -110,7 +121,7 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
                 lbl_estimationday.Text = inpatientData.estimation_day;
                 lbl_istindakan.Text = inpatientData.operation_procedures.Count() > 0? "Ya" : "Tidak";
                 //lbl_tglTindakan.Text = DateTime.Parse(splitDateTindakan.Trim()).ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
-                lbl_waktuTindakan.Text = inpatientData.operation_schedule_header.incision_time == null? "-" : inpatientData.operation_schedule_header.incision_time;
+                //lbl_waktuTindakan.Text = inpatientData.operation_schedule_header.incision_time == null? "-" : inpatientData.operation_schedule_header.incision_time;
 
                 
                 lbl_anesteticmethod.Text = inpatientData.operation_schedule_header.anesthetia_type_name== null? "-" : inpatientData.operation_schedule_header.anesthetia_type_name;
@@ -118,18 +129,17 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
 
 
                 lbl_alat.Text = inpatientData.tools_detail == "" ? " -" : inpatientData.tools_detail ;
+                lbl_tabelKategori.Text = inpatientData.category == -1 ? " - " : inpatientData.category == 0 ? inpatientData.category_detail.ToString() : inpatientData.category.ToString();
                 lbl_recoveryroom.Text = inpatientData.recovery_room;
                 lbl_fasting.Text = inpatientData.fasting_procedure_time != 0 ? inpatientData.fasting_procedure_time.ToString()+ " Jam" : "-" ;
 
                 if(inpatientData.lab_Rad_Additionals.Count()>0)
                 {
-                    lbl_isLabo.Text = inpatientData.other_lab == "" ? "Tidak" : "Ya";
-                    lbl_isRadiologi.Text = inpatientData.other_rad == "" ? "Tidak" : "Ya";
                     
-                    lbl_isRadiologi.Text = inpatientData.lab_Rad_Additionals.Where(x => x.is_rad == true).Count() > 1 ? "Ya" : "Tidak";
+                    lbl_isRadiologi.Text = inpatientData.lab_Rad_Additionals.Where(x => x.is_rad == true).Count() > 0 ? "Ya" : "Tidak";
                     txt_listlaborder.Text = inpatientData.other_lab;
                     txt_listradorder.Text = inpatientData.other_rad;
-                    lbl_isLabo.Text = inpatientData.lab_Rad_Additionals.Where(x => x.is_rad == false).Count() > 1 ? "Ya" : "Tidak";
+                    lbl_isLabo.Text = inpatientData.lab_Rad_Additionals.Where(x => x.is_rad == false).Count() > 0 ? "Ya" : "Tidak";
                 }
                 else
                 {
@@ -179,27 +189,27 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
                     var gettglLab = inpatientData.lab_Rad_Additionals.Where(x => x.is_rad != false).FirstOrDefault();
 
                     string[] separateDateLab = gettglLab.created_date.Split(' ');
-                    string splitDateLab = separateDate[0];
-                    string splitTimeLab = separateDate[1];
-                    string timePM_AMLab = separateDate[2];
+                    string splitDateLab = separateDateLab[0];
+                    string splitTimeLab = separateDateLab[1];
+                    string timePM_AMLab = separateDateLab[2];
 
                     string[] newlabordate = splitDateLab.Split('/');
                     int labday = Convert.ToInt32(newlabordate[1].Trim());
                     int labmonth = Convert.ToInt32(newlabordate[0].Trim());
                     int labyear= Convert.ToInt32(newlabordate[2].Trim()); ;
-                    lbl_orderdatelab.Text = new DateTime(labyear, labmonth, labday).ToString("dd MMMM yyyy") + $"{splitTime.Substring(0, splitTime.Length - 3)} {timePM_AM}";
+                    lbl_orderdatelab.Text = new DateTime(labyear, labmonth, labday).ToString("dd MMMM yyyy") + $"{splitTimeLab.Substring(0, splitTimeLab.Length - 3)} {timePM_AMLab}";
                     var gettglRad = inpatientData.lab_Rad_Additionals.Where(x => x.is_rad != false).FirstOrDefault();
                     string[] separateDateRad = gettglRad.created_date.Split(' ');
-                    string splitDateRad = separateDate[0];
-                    string splitTimeRad = separateDate[1];
-                    string timePM_AMRad = separateDate[2];
+                    string splitDateRad = separateDateRad[0];
+                    string splitTimeRad = separateDateRad[1];
+                    string timePM_AMRad = separateDateRad[2];
 
                     string[] newraddate = splitDateLab.Split('/');
                     int radday = Convert.ToInt32(newraddate[1].Trim());
                     int radmonth = Convert.ToInt32(newraddate[0].Trim());
                     int radyear = Convert.ToInt32(newraddate[2].Trim()); ;
 
-                    lbl_orderdatrad.Text = new DateTime(radyear, radmonth, radday).ToString("dd MMMM yyyy") + $"{splitTime.Substring(0, splitTime.Length - 3)} {timePM_AM}";
+                    lbl_orderdatrad.Text = new DateTime(radyear, radmonth, radday).ToString("dd MMMM yyyy") + $"{splitTimeRad.Substring(0, splitTimeRad.Length - 3)} {timePM_AMRad}";
 
                     List<CpoeTrans> listClinicLab = new List<CpoeTrans>();
                     List<CpoeTrans> listMicroLab = new List<CpoeTrans>();
@@ -381,17 +391,17 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
                     if (listCT.Count() > 0 )
                     {
                         DataTable dtlistCT = Helper.ToDataTable(listCT);
-                        rpt_cito.DataSource = dtlistCT;
-                        rpt_cito.DataBind();
+                        rpt_ct.DataSource = dtlistCT;
+                        rpt_ct.DataBind();
                         up_inpatient.Update();
-                        lbl_cito_empty.Visible = false;
+                        lbl_radct_no.Visible = false;
                         up_inpatient.Update();
                     }
                     else
                     {
-                        lbl_cito_empty.Visible = true;
-                        rpt_cito.DataSource = null;
-                        rpt_cito.DataBind();
+                        lbl_radct_no.Visible = true;
+                        rpt_ct.DataSource = null;
+                        rpt_ct.DataBind();
                         up_inpatient.Update();
                     }
                     if (listMRI1.Count() > 0)
@@ -406,11 +416,11 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
                     {
                         rpt_mr15tesla.DataSource = null;
                         rpt_mr15tesla.DataBind();
-                        lbl_mr15tesla_no.Visible = false;
+                        lbl_mr15tesla_no.Visible = true;
                         up_inpatient.Update();
                     }
 
-                    if (listMRI3 != null)
+                    if (listMRI3.Count() > 0)
                     {
                         DataTable dtlistMRI3 = Helper.ToDataTable(listMRI3);
                         rpt_mri3teslarad.DataSource = dtlistMRI3;

@@ -20,16 +20,17 @@ public class clsInpatient
         try
         {
             HttpClient httpLogin = new HttpClient();
-            //httpLogin.BaseAddress = new Uri(ConfigurationManager.AppSettings["urlIPDOT"].ToString());
-            var url = "http://10.83.254.38:5700";
+            ConfigurationManager.AppSettings["urlIPDOT"] = SiloamConfig.Functions.GetValue("urlIPDOT").ToString();
 
-            httpLogin.BaseAddress = new Uri(url); ;
+            httpLogin.BaseAddress = new Uri(ConfigurationManager.AppSettings["urlIPDOT"].ToString());
+            //var url = "http://10.83.254.38:5700";
+
             httpLogin.DefaultRequestHeaders.Accept.Clear();
             httpLogin.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             var task = Task.Run(async () =>
             {
-                return await httpLogin.GetAsync(string.Format($"/OperationSchedule/additional/" + organizationId + "/" + operation_schecule_id + "/" + patient_id + "/" + addmision_no + "/" + encounter_id));
+                return await httpLogin.GetAsync(string.Format($"/OperationSchedule/refferal_opd_additional/" + organizationId + "/" + operation_schecule_id + "/" + patient_id + "/" + addmision_no + "/" + encounter_id));
             });
 
             string EndTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");

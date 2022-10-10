@@ -187,8 +187,8 @@
                                     <label>- </label>
                                     <asp:TextBox ID="txtToDateNew" runat="server" Style="width: 120px; height: 26px;" placeholder="dd mmm yyyy" onmousedown="dateEndNew();" OnTextChanged="txtToDateNew_TextChanged" AutoPostBack="true" AutoCompleteType="Disabled"></asp:TextBox>
                                     <asp:DropDownList ID="dropType" runat="server" Style="margin-left: 15px; min-width: 200px; height: 26px;" OnSelectedIndexChanged="dropType_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                    <asp:DropDownList ID="dropDoctor" runat="server" Style="margin-left: 15px; min-width: 200px; height: 26px;" OnSelectedIndexChanged="btnFilterOnClick" AutoPostBack="true" Visible="false">
-                                        <asp:ListItem Text="Dokter" Value="0" />
+                                    <asp:DropDownList ID="dropDoctor" runat="server" Style="margin-left: 15px; min-width: 200px; height: 26px;" OnSelectedIndexChanged="btnFilterOnClick" AutoPostBack="true" Visible="true">
+                                        <asp:ListItem Text="All Doctor" Value="0" />
                                     </asp:DropDownList>
                                     <asp:DropDownList ID="dropPageOf" runat="server" Style="margin-left: 15px; min-width: 200px; height: 26px;" OnSelectedIndexChanged="dropPageOf_SelectedIndexChanged" AutoPostBack="true">
                                     </asp:DropDownList>
@@ -1074,6 +1074,12 @@
             $('#DivModalDashboard').modal('show');
             document.getElementById('<%=btnDashboardModal.ClientID%>').click();
             return true;
+        }
+
+        function topPage() {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'slow');
         }
 
     </script>

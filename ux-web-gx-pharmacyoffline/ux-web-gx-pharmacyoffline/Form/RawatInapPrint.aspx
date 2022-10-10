@@ -99,7 +99,7 @@
                     
                 border-right: solid 1px #cdced9;
                 vertical-align: top;
-                padding: 10px;
+                padding-left: 20px;
             }
 
             .wordbreak {
@@ -150,12 +150,14 @@
                     border: 0;
                 }
             .otorisasi-item{
-                border: solid 1px #cdced9; width: 100%;
+                border: solid 1px #cdced9; 
                 background-color: #ffff;
                 padding:5px;
                 vertical-align:top;
                 text-align:left;
             }
+
+
         </style>
  <div>
      <asp:UpdatePanel ID="up_inpatient" runat="server" UpdateMode="Conditional">
@@ -278,7 +280,7 @@
                                                     </td>
                                                     <td style="width: 50%;" class="itemtable-priview">
                                                         <asp:Label Font-Size="14px" style="margin-right:20px" Font-Bold="true" ID="Label9" runat="server" Text="Waktu "></asp:Label>
-                                                        <asp:Label Font-Size="14px" ID="lbl_waktuTindakan" runat="server" Text=" 14.40 WIB"> </asp:Label>
+                                                        <asp:Label Font-Size="14px" ID="lbl_waktuTindakan" runat="server" Text=""> </asp:Label>
                                                     </td>
                                                  </tr>
                                             </table>
@@ -294,7 +296,15 @@
 
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
-                                            <asp:Label runat="server" ID="lbl_namaoperasi" Style="font-size: 14px;" Text="-"> </asp:Label>
+                                            
+                                            <asp:Label runat="server" ID="lbl_namaoperasi_no" Text="Tidak Ada"></asp:Label>
+                                            <ul style="list-style-type: circle;padding-left:20px">
+                                            <asp:Repeater ID="rpt_namaoperasi" runat="server">
+                                                <ItemTemplate>             
+                                                     <li><%# Eval("procedure_name") %></li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        
                                         </td>
                                     </tr>
                                 </tbody>
@@ -562,7 +572,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:Label runat="server" ID="lbl_cito_empty" Text="(tidak ada order)"></asp:Label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="rpt_cito" runat="server">
                                                 <ItemTemplate>             
                                                      <li><%# Eval("name") %></li>
@@ -580,7 +590,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:Label runat="server" ID="lbl_chlinicalpathology_no" Text="(tidak ada order)"></asp:Label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="rpt_chlinicalpathology" runat="server">
                                                 <ItemTemplate>
                                                   <li><%# Eval("name") %></li>
@@ -599,7 +609,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                              <asp:Label runat="server" ID="lbl_Microbiology_no" Text="(tidak ada order)"></asp:Label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
 
                                             <asp:Repeater ID="rpt_Microbiology" runat="server">
                                                 <ItemTemplate>
@@ -620,7 +630,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:Label runat="server" ID="lbl_anatomicalno" Text="(tidak ada order)"></asp:Label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="rpt_AnatomicalPathology" runat="server">
                                                 <ItemTemplate>
                                                   <li><%# Eval("name") %></li>
@@ -640,7 +650,7 @@
                                          <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:Label runat="server" ID="lbl_mri3teslano" Text="(tidak ada order)"></asp:Label>
 
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="l_mri3tesla" runat="server">
                                                 <ItemTemplate>
                                                   <li><%# Eval("name") %></li>
@@ -697,8 +707,8 @@
                                 
                                 <tbody>
                                     <tr style="border: solid 1px #cdced9;">
-                                        <td colspan="4" class="otorisasi-item" style="text-align:center">
-                                            <label style=" font-weight: bold; font-size: 14px;display:block"> OTORISASI PETUGAS</label>
+                                        <td colspan="4" class="otorisasi-item" style="text-align:left;width:33%">
+                                            <label style=" font-weight: bold; font-size: 14px;display:block;text-align:center"> OTORISASI PETUGAS</label>
                                         </td>
                                     </tr>
                                     <tr style="border: solid 1px #cdced9;text-align:left">
@@ -706,7 +716,7 @@
                                             <label style=" font-weight: bold; font-size: 14px;display:block"> Tugas</label>
                                         </td>
                                         <td  class="otorisasi-item">
-                                            <label style=" font-weight: bold; font-size: 14px;display:block"> Nama/Paraf</label>
+                                            <label style=" font-weight: bold; font-size: 14px;display:block;text-align:center"> Nama/Paraf</label>
                                         </td>
                                         <td  class="otorisasi-item">
                                             <label style=" font-weight: bold; font-size: 14px;display:block"> Tgl/Jam</label>
@@ -818,7 +828,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:label ID="lbl_radxray_no" runat="server" style=" font-weight: normal; font-size: 14px;display:block">(tidak ada order)</asp:label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="rpt_xray" runat="server">
                                                 <ItemTemplate>
                                                   <li><%# Eval("name") %></li>
@@ -839,7 +849,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:label ID="lbl_radusg_no" runat="server" style=" font-weight: normal; font-size: 14px;display:block">(tidak ada order)</asp:label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="rpt_usg" runat="server">
                                                 <ItemTemplate>
                                                   <li><%# Eval("name") %></li>
@@ -858,7 +868,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:label ID="lbl_radct_no" runat="server" style=" font-weight: normal; font-size: 14px;display:block">(tidak ada order)</asp:label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="rpt_ct" runat="server">
                                                 <ItemTemplate>
                                                   <li><%# Eval("name") %></li>
@@ -877,7 +887,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:label ID="lbl_mr15tesla_no" runat="server" style=" font-weight: normal; font-size: 14px;display:block">(tidak ada order)</asp:label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="rpt_mr15tesla" runat="server">
                                                 <ItemTemplate>
                                                   <li><%# Eval("name") %></li>
@@ -897,7 +907,7 @@
                                         </td>
                                         <td style="width: 65%;" colspan="2" class="itemtable-priview">
                                             <asp:label ID="lbl_mri3tesla_no_rad" runat="server" style=" font-weight: normal; font-size: 14px;display:block">(tidak ada order)</asp:label>
-                                            <ul style="list-style-type: circle;">
+                                            <ul style="list-style-type: circle;padding-left:20px">
                                             <asp:Repeater ID="rpt_mri3teslarad" runat="server">
                                                 <ItemTemplate>
                                                   <li><%# Eval("name") %></li>

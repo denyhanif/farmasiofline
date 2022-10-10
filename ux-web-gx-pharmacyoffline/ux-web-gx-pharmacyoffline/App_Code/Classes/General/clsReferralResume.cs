@@ -34,4 +34,50 @@ public class clsReferralResume
         }
     }
 
+    public static async Task<string> getPatientReferral(long OrganizationId, long PatientId, long AdmissionId)
+    {
+        try
+        {
+            HttpClient orderSet = new HttpClient();
+            orderSet.BaseAddress = new Uri(ConfigurationManager.AppSettings["urlPrescription"].ToString());
+
+            orderSet.DefaultRequestHeaders.Accept.Clear();
+            orderSet.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            var task = Task.Run(async () =>
+            {
+                return await orderSet.GetAsync(string.Format($"/patientreferral/" + OrganizationId + "/" + PatientId + "/" + AdmissionId));
+            });
+
+            return task.Result.Content.ReadAsStringAsync().Result;
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+    }
+
+    public static async Task<string> getPatientReferralBalasan(long OrganizationId, long PatientId, long AdmissionId)
+    {
+        try
+        {
+            HttpClient orderSet = new HttpClient();
+            orderSet.BaseAddress = new Uri(ConfigurationManager.AppSettings["urlPrescription"].ToString());
+
+            orderSet.DefaultRequestHeaders.Accept.Clear();
+            orderSet.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            var task = Task.Run(async () =>
+            {
+                return await orderSet.GetAsync(string.Format($"/patientreferralbalasan/" + OrganizationId + "/" + PatientId + "/" + AdmissionId));
+            });
+
+            return task.Result.Content.ReadAsStringAsync().Result;
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -64,16 +65,20 @@ public partial class Form_ReferralResumePrint : System.Web.UI.Page
                 List<ViewOrganizationSetting> listSettings = new List<ViewOrganizationSetting>();
                 listSettings = theSettings.list;
 
-                List<ResumeDetail> datatemp = JsongetPatientHistoryGeneral.list.resumedetail.Where(x => x.RefType == "Rujukan").ToList();
-                List<ResumeDetail> data = new List<ResumeDetail>();
-                foreach (ResumeDetail item in datatemp)
+                //List<ResumeDetail> datatemp = JsongetPatientHistoryGeneral.list.resumedetail.Where(x => x.RefType == "Rujukan").ToList();
+                List<ResumeDetail> data = JsongetPatientHistoryGeneral.list.resumedetail;
+                //foreach (ResumeDetail item in datatemp)
+                //{
+                //    data.Add(item);
+                //    if (JsongetPatientHistoryGeneral.list.resumedetail.Where(x => x.RefType == "Balasan" && x.DoctorRef == item.DoctorReferralId).Any())
+                //    {
+                //        ResumeDetail resumeDetail = JsongetPatientHistoryGeneral.list.resumedetail.Where(x => x.RefType == "Balasan" && x.DoctorRef == item.DoctorReferralId).FirstOrDefault();
+                //        data.Add(resumeDetail);
+                //    }
+                //}
+                foreach (var col in data)
                 {
-                    data.Add(item);
-                    if (JsongetPatientHistoryGeneral.list.resumedetail.Where(x => x.RefType == "Balasan" && x.DoctorRef == item.DoctorReferralId).Any())
-                    {
-                        ResumeDetail resumeDetail = JsongetPatientHistoryGeneral.list.resumedetail.Where(x => x.RefType == "Balasan" && x.DoctorRef == item.DoctorReferralId).FirstOrDefault();
-                        data.Add(resumeDetail);
-                    }
+                    col.CountData = data.Count();
                 }
 
                 RptReferralPrint.DataSource = Helper.ToDataTable(data);

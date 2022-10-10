@@ -304,7 +304,7 @@ public class clsPatientHistory
         }
     }
 
-    public static async Task<string> getPatientHistoryOPDIPDUsePagination(string organizationId, string patientId, string type, int limit, int page, DateTime startDate, DateTime endDate)
+    public static async Task<string> getPatientHistoryOPDIPDUsePagination(string organizationId, string patientId, string type, int limit, int page, DateTime startDate, DateTime endDate, string doctorId)
     {
         try
         {
@@ -315,7 +315,7 @@ public class clsPatientHistory
 
             var task = Task.Run(async () =>
             {
-                return await httpClient.GetAsync(string.Format($"/patienthistorypaging/" + organizationId + "/" + patientId + "/" + limit + "/" + page + "/" + type + "/" + startDate.ToString("yyyy-MM-dd") + "/" + endDate.ToString("yyyy-MM-dd")));
+                return await httpClient.GetAsync(string.Format($"/patienthistorypaging/" + organizationId + "/" + patientId + "/" + limit + "/" + page + "/" + type + "/" + startDate.ToString("yyyy-MM-dd") + "/" + endDate.ToString("yyyy-MM-dd")) + "/" + doctorId);
             });
 
             return task.Result.Content.ReadAsStringAsync().Result;
@@ -487,4 +487,32 @@ public class clsPatientHistory
         }
         return dt;
     }
+
+    public static async Task<string> getPatientHistorySOAP(long OrganizationId, long PatientId)
+    {
+        string StartTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        try
+        {
+            HttpClient orderSet = new HttpClient();
+            orderSet.BaseAddress = new Uri(ConfigurationManager.AppSettings["urlPrescription"].ToString());
+
+            orderSet.DefaultRequestHeaders.Accept.Clear();
+            orderSet.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            var task = Task.Run(async () =>
+            {
+                return await orderSet.GetAsync(string.Format($"/patienthistorylitedashboard/" + OrganizationId + "/" + PatientId));
+            });
+
+            //Log.Debug(LogLibrary.SaveLogNew(MyUser.GetHopeOrgID().ToString(), "PatientId", PatientId.ToString(), "getPatientHistorySOAP", StartTime, "OK", MyUser.GetUsername(), "/" + OrganizationId.ToString() + "/" + PatientId.ToString(), "", task.Result.Content.ReadAsStringAsync().Result.ToString()));
+            return task.Result.Content.ReadAsStringAsync().Result;
+        }
+        catch (Exception ex)
+        {
+            //Log.Error(LogLibrary.SaveLogNew(MyUser.GetHopeOrgID().ToString(), "PatientId", PatientId.ToString(), "getPatientHistorySOAP", StartTime, "ERROR", MyUser.GetUsername(), "/" + OrganizationId.ToString() + "/" + PatientId.ToString(), "", ex.Message));
+            return ex.Message;
+        }
+    }
+
+
 }

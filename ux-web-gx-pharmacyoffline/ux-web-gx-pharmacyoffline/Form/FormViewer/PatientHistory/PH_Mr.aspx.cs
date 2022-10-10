@@ -71,13 +71,14 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
                 //Pagination
                 currentPage = 1;
                 resetDdlPage = true;
+                //string doctorId = Request.QueryString["DoctorId"] == null ? "0" : Request.QueryString["DoctorId"];
 
-                getData("ALL");
+                getData("ALL", "0");
             }
         }
     }
 
-    protected void getData(string Type)
+    protected void getData(string Type, string doctorId)
     {
         string rspn_status = "", rspn_message = "";
         Session[Helper.sessionPatientHistoryLite] = null;
@@ -93,7 +94,7 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         }
 
         //var dataPatientHistory = clsPatientHistory.getPatientHistoryOPDIPD(Request.QueryString["OrganizationId"], QSpatientid, DateTime.Parse(txtDateFromNew.Text), DateTime.Parse(txtToDateNew.Text), Type, Request.QueryString["DoctorId"]);
-        var dataPatientHistory = clsPatientHistory.getPatientHistoryOPDIPDUsePagination(Request.QueryString["OrganizationId"], QSpatientid, Type, pageSize, currentPage, DateTime.Parse(txtDateFromNew.Text), DateTime.Parse(txtToDateNew.Text));
+        var dataPatientHistory = clsPatientHistory.getPatientHistoryOPDIPDUsePagination(Request.QueryString["OrganizationId"], QSpatientid, Type, pageSize, currentPage, DateTime.Parse(txtDateFromNew.Text), DateTime.Parse(txtToDateNew.Text), doctorId);
         var Response = JsonConvert.DeserializeObject<ResponsePatientHistoryAll>(dataPatientHistory.Result);
        
         rspn_status = Response.Status;
@@ -103,15 +104,17 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         {
             //var patientIdOwned = JsonConvert.DeserializeObject<ResponsePatientHistoryAll>(dataPatientHistory.Result.ToString());
             List<PatientHistoryAll> listPatientHistoryLite = new List<PatientHistoryAll>();
-            List<String> listDoctor = new List<String>();
+            List<DoctorList> doctorList = new List<DoctorList>();
+            //List<String> listDoctor = new List<String>();
 
             //listPatientHistoryLite = patientIdOwned.Data;
             listPatientHistoryLite = Response.Data.patientHistory;
+            doctorList = Response.Data.doctorList;
             countPage = Response.Data.countPage;
 
-            listDoctor = (from a in listPatientHistoryLite
-                          select a.DoctorName
-                          ).Distinct().ToList();
+            //listDoctor = (from a in listPatientHistoryLite
+            //              select a.DoctorName
+            //              ).Distinct().ToList();
 
             //if (listPatientHistoryLite[0].CountData > 20)
             //{
@@ -122,9 +125,20 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
             //    alertNotif.Visible = false;
             //}
 
-            dropDoctor.DataSource = listDoctor;
-            dropDoctor.DataBind();
-            dropDoctor.Items.Insert(0, new ListItem("Dokter"));
+            //dropDoctor.DataSource = listDoctor;
+            //dropDoctor.DataBind();
+            //dropDoctor.Items.Insert(0, new ListItem("Dokter"));
+
+            if (dropDoctor.Items.Count <= 1)
+            {
+                for (int i = 0; i < doctorList.Count; i++)
+                {
+                    ListItem ls = new ListItem();
+                    ls.Value = doctorList[i].doctorId.ToString();
+                    ls.Text = doctorList[i].doctorName;
+                    dropDoctor.Items.Add(ls);
+                }
+            }
 
             //foreach (PatientHistoryLite A in listPatientHistoryLite)
             //{
@@ -181,7 +195,7 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         currentPage = 1;
         resetDdlPage = true;
 
-        getData(dropType.SelectedValue);
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
     }
 
     protected void txtToDateNew_TextChanged(object sender, EventArgs e)
@@ -190,7 +204,7 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         currentPage = 1;
         resetDdlPage = true;
 
-        getData(dropType.SelectedValue);
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
     }
 
     protected void btnPatientHistory_Click(object sender, ImageClickEventArgs e)
@@ -321,27 +335,34 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
 
     protected void btnFilterOnClick(object sender, EventArgs e)
     {
-        if (Session[Helper.sessionPatientHistoryLite] != null)
-        {
-            DataTable dtworklist = Session[Helper.sessionPatientHistoryLite] as DataTable;
-            DataTable dtfiltered = new DataTable();
+        //if (Session[Helper.sessionPatientHistoryLite] != null)
+        //{
+        //    DataTable dtworklist = Session[Helper.sessionPatientHistoryLite] as DataTable;
+        //    DataTable dtfiltered = new DataTable();
 
-            if (dtworklist.Select("DoctorName = '" + dropDoctor.SelectedValue + "'").Count() > 0)
-            {
-                dtfiltered = dtworklist.Select("DoctorName = '" + dropDoctor.SelectedValue + "'").CopyToDataTable();
-                //gvw_detail.DataSource = dtfiltered;
-                //gvw_detail.DataBind();
-                RptListPH.DataSource = dtfiltered;
-                RptListPH.DataBind();
-            }
-            else
-            {
-                //gvw_detail.DataSource = dtworklist;
-                //gvw_detail.DataBind();
-                RptListPH.DataSource = dtworklist;
-                RptListPH.DataBind();
-            }
-        }
+        //    if (dtworklist.Select("DoctorName = '" + dropDoctor.SelectedValue + "'").Count() > 0)
+        //    {
+        //        dtfiltered = dtworklist.Select("DoctorName = '" + dropDoctor.SelectedValue + "'").CopyToDataTable();
+        //        //gvw_detail.DataSource = dtfiltered;
+        //        //gvw_detail.DataBind();
+        //        RptListPH.DataSource = dtfiltered;
+        //        RptListPH.DataBind();
+        //    }
+        //    else
+        //    {
+        //        //gvw_detail.DataSource = dtworklist;
+        //        //gvw_detail.DataBind();
+        //        RptListPH.DataSource = dtworklist;
+        //        RptListPH.DataBind();
+        //    }
+        //}
+
+        //Filter Doctor Direct to API
+        dropPageOf.SelectedIndex = 0;
+        currentPage = 1;
+        resetDdlPage = true;
+
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
     }
 
     //protected void btnPrintOnClick(object sender, EventArgs e)
@@ -722,7 +743,7 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         currentPage = 1;
         resetDdlPage = true;
 
-        getData(dropType.SelectedValue);
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
     }
 
     protected void btnrevisionModal_Click(object sender, EventArgs e)
@@ -1059,7 +1080,7 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
             lbNext.CssClass = currentPage != countPage ? (countPage > 0 ? "btn btn-sm btn-primary" : "btn btn-sm btn-primary disabled") : "btn btn-sm btn-primary disabled";
             lbLast.CssClass = currentPage != countPage ? (countPage > 0 ? "btn btn-sm btn-primary" : "btn btn-sm btn-primary disabled") : "btn btn-sm btn-primary disabled";
             lCurrentPage.Text = currentPage.ToString();
-            lTotalPage.InnerHtml = "Total Halaman: " + countPage;
+            lTotalPage.InnerHtml = "Total Halaman: " + (countPage == 0 ? 1 : countPage).ToString();
 
             if (resetDdlPage)
             {
@@ -1100,7 +1121,8 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         currentPage = 1;
         resetDdlPage = false;
 
-        getData(dropType.SelectedValue);
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
+        ScriptManager.RegisterClientScriptBlock(this, GetType(), Guid.NewGuid().ToString(), "topPage()", true);
     }
 
     protected void lbPrevious_Click(object sender, EventArgs e)
@@ -1109,7 +1131,8 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         currentPage -= 1;
         resetDdlPage = false;
 
-        getData(dropType.SelectedValue);
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
+        ScriptManager.RegisterClientScriptBlock(this, GetType(), Guid.NewGuid().ToString(), "topPage()", true);
     }
 
     protected void lbNext_Click(object sender, EventArgs e)
@@ -1118,7 +1141,8 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         currentPage += 1;
         resetDdlPage = false;
 
-        getData(dropType.SelectedValue);
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
+        ScriptManager.RegisterClientScriptBlock(this, GetType(), Guid.NewGuid().ToString(), "topPage()", true);
     }
 
     protected void lbLast_Click(object sender, EventArgs e)
@@ -1127,7 +1151,8 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         currentPage = countPage;
         resetDdlPage = false;
 
-        getData(dropType.SelectedValue);
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
+        ScriptManager.RegisterClientScriptBlock(this, GetType(), Guid.NewGuid().ToString(), "topPage()", true);
     }
 
     protected void dropPageOf_SelectedIndexChanged(object sender, EventArgs e)
@@ -1135,7 +1160,7 @@ public partial class Form_FormViewer_PatientHistory_PH_Mr : System.Web.UI.Page
         currentPage = dropPageOf.SelectedIndex + 1;
         resetDdlPage = false;
 
-        getData(dropType.SelectedValue);
+        getData(dropType.SelectedValue, dropDoctor.SelectedValue);
     }
 
     #endregion

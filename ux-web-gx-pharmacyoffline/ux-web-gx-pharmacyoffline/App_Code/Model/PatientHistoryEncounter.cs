@@ -68,8 +68,8 @@ public class PatientHistoryProcedureDiagnostic
 {
     public string salesItemName { get; set; }
     public string salesItemType { get; set; }
-    public bool is_future_order { get; set; }
-    public DateTime future_order_date { get; set; }
+    public bool isFutureOrder { get; set; }
+    public DateTime futureOrderDate { get; set; }
 }
 public class PatientHistoryAnamnesis
 {

@@ -75,10 +75,17 @@ public class PatientHistoryAll : PatientHistoryLite
     public int TotalDocument { get; set; }
 }
 
+public class DoctorList
+{
+    public long doctorId { get; set; }
+    public string doctorName { get; set; }
+}
+
 public class PatientHistoryPagination
 {
     public int countPage { get; set; }
     public List<PatientHistoryAll> patientHistory { set; get; }
+    public List<DoctorList> doctorList { set; get; }
 }
 
 public class ResponsePatientHistoryAll

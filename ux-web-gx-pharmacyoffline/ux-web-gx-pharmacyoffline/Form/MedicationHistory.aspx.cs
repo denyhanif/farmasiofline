@@ -45,6 +45,9 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
             ddlEncounterMode.SelectedIndex = 3;
 
         }
+        string baseURLhttps = "http://localhost:62383";
+        Iframereleasedpharmacy.Src = baseURLhttps + "/Form/FormViewer/DrugPrescription/DrugPrescription.aspx?OrganizationId=" + Helper.organizationId.ToString() + "&PatientId=" + hfPatientId.Value;
+
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
@@ -280,6 +283,8 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
                 List<MedicationHistory> listPrescription = new List<MedicationHistory>();
                 List<MedicationHistory> listCompound = new List<MedicationHistory>();
                 List<MedicationHistory> listConsumables = new List<MedicationHistory>();
+                List<MedicationHistory> listDummyIssuemPharmachy = new List<MedicationHistory>();
+
 
                 List<Organization> listOrganization = new List<Organization>();
 
@@ -334,13 +339,18 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
                                 {
                                     checkverified = "<i class=\"fa fa-check-square-o\" style=\"color: #4d9b35;font-size: 20px;\" title=\"Verified by Pharmacy\"></i>";
                                 }
-                                compoundHtml.Append("<div class = " + "container-fluid" + " style=" + "margin-top:10px;" + "padding-bottom:0px;" + "><div style=" + "font-size:25px;" + "><b>" + dataDate + "</b> "+ checkverified +" </div><div style=" + "font-size:12px;" + ">" + dataAdmissionNo + " | " + datadoctorName + " | " + payerNameText + "</div>");
+                                compoundHtml.Append("<div class = " + "container-fluid" + " style=" + "margin-top:10px;" + "padding-bottom:0px;" + "><div style=" + "font-size:25px;" + "><b>" + dataDate + "</b> " + checkverified + " </div><div style=" + "font-size:12px;" + ">" + dataAdmissionNo + " | " + datadoctorName + " | " + payerNameText + "</div>");
 
-                                listPrescription = listHistoryByDoctor.FindAll(x => x.IsCompound.Equals("0") && x.IsConsumables.Equals("0"));
+                                listPrescription = listHistoryByDoctor.FindAll(x => x.IsCompound.Equals("0") && x.IsConsumables.Equals("0") && x.Type.Equals("DOCTOR"));
                                 //listPrescription = listHistoryByDoctor.FindAll(x => x.isConsumables.Equals("0"));
 
-                                listCompound = listHistoryByDoctor.FindAll(x => x.IsCompound.Equals("1"));
-                                listConsumables = listHistoryByDoctor.FindAll(x => x.IsConsumables.Equals("1"));
+                                listCompound = listHistoryByDoctor.FindAll(x => x.IsCompound.Equals("1") && x.Type.Equals("DOCTOR"));
+                                listConsumables = listHistoryByDoctor.FindAll(x => x.IsConsumables.Equals("1") && x.Type.Equals("DOCTOR"));
+                                //group by type
+                                List<MedicationHistory> listfarmasi = new List<MedicationHistory>();
+
+                                listfarmasi = listData.FindAll(x => x.Type.Equals("PHARMACY"));
+
 
                                 GridView data_grid = new GridView();
                                 DataTable dt = new DataTable();
@@ -436,7 +446,7 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
 
                                     }
                                     compoundHtml.Append("</table></div>");
-                                    if (listCompound.Count != 0 || listConsumables.Count != 0)
+                                    if (listCompound.Count != 0 || listConsumables.Count != 0 || listfarmasi.Count!=0)
                                     {
                                         compoundHtml.Append("<br />");
                                     }
@@ -452,11 +462,10 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
                                     {
                                         compoundHtml.Append("<div class=\"shadows\" style=\"background-color:white; margin-bottom:5px; margin-top:8px; max-height:350px; overflow:auto; padding-left:0px; padding-right:0px;\"><div>");
                                     }
-
                                     compoundHtml.Append("<div style=\"font-size:17px; padding-left: 10px; padding-bottom: 5px;\"><b> <label> Compound Prescription </label> </b></div>");
 
                                     compoundHtml.Append("<div style=\"border-bottom: 1px solid lightgray; border-top: 1px solid lightgray; min-width:1376px;\"><table class=\"table table-striped table-condensed\" style=\"margin-bottom:0px; margin-left:5px; margin-right:5px; min-width:1366px;\" ><tr><td><b>Organization</b></td><td><b>Transac. Date</b></td>");
-                                    
+
                                     //compoundHtml.Append("" +
                                     //    "<td><b>Item</b></td>" +
                                     //    "<td><b>Dose</b></td>" +
@@ -558,7 +567,7 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
                                     }
                                     compoundHtml.Append("</table></div>");
 
-                                    if (listConsumables.Count != 0)
+                                    if (listConsumables.Count != 0 || listfarmasi.Count !=0)
                                     {
                                         compoundHtml.Append("<br />");
                                     }
@@ -659,12 +668,123 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
 
                                     }
                                     compoundHtml.Append("</table></div>");
-                                    compoundHtml.Append("</div></div></div>");
+                                    //compoundHtml.Append("</div></div></div>");
+                                    if (listfarmasi.Count() != 0)
+                                    {
+                                        compoundHtml.Append("<br />");
+                                    }
+                                    else
+                                    {
+                                        compoundHtml.Append("</div></div></div>");
+                                    }
 
                                 }
+
+
+
+                                #region Pharmachy Issue
+                               
+                                if (listfarmasi.Count > 0)
+                                {
+                                    DataTable helperarmasi = Helper.ToDataTable(listfarmasi);
+                                    List<String> listFarmasiAdmissionNo = listfarmasi.Select(x => x.AdmissionNo).Distinct().ToList();
+                                    //List<MedicationHistory> listbyadmission = listfarmasi.Select(x => x.AdmissionNo);
+
+
+                                    if (listPrescription.Count == 0 && listCompound.Count == 0 && listConsumables.Count == 0)
+                                    {
+                                        compoundHtml.Append("<div class=\"shadows\" style=\"background-color:white; margin-bottom:5px; margin-top:8px; max-height:350px; overflow:auto; padding-left:0px; padding-right:0px;\"><div>");
+                                    }
+
+                                    compoundHtml.Append("<div style=\"font-size:17px; padding-left: 10px; padding-bottom: 5px;\"><b> <label> Pharmachy Issue </label> </b></div>");
+
+                                    foreach (var admission in listFarmasiAdmissionNo)
+                                    {
+                                        if (admission == dataAdmissionNo)
+                                        {
+
+                                            List<MedicationHistory> listAdmissionFarmasi = listfarmasi.FindAll(x => x.AdmissionNo == admission);
+
+                                            List<MedicationHistory> listAdmissionFarmasinoncompound = listAdmissionFarmasi.FindAll(x => x.IsCompound == "0");
+                                            List<MedicationHistory> listAdmissionFarmasicompound = listAdmissionFarmasi.FindAll(x => x.IsCompound == "1");
+
+                                            //foreach (var f in listAdmissionFarmasi) {
+
+                                            //if (dataDate == string.Format("{0:ddd, dd MMM yyyy}", f.AdmissionDate))
+                                            //{
+                                            var issuedate = "";
+                                            var issuedby = "";
+                                            string releasedate = "";
+                                            string releaseby = "";
+                                            string received = "";
+                                            string contact = "";
+                                            string relation = "";
+                                            foreach (var data in listAdmissionFarmasi)
+                                            {
+                                                issuedate = data.IssuedDate.ToString("dd-MMM-yy - h:m");
+                                                issuedby = data.IssuedBy;
+                                                releasedate = data.ReleasedDate.ToString("dd-MMM-yy - h:m");
+                                                releaseby = data.ReleasedBy;
+                                                received = data.ReceivedName;
+                                                contact = data.ReceivedPhoneNo;
+                                                relation = data.ReceivedRelation;
+                                            }
+
+                                            compoundHtml.Append("<div style=\"font-size:17px; padding-left: 10px; padding-bottom: 5px;\"><b> <label> " + admission + "</label> </b></div>");
+                                            compoundHtml.Append("<div style=\"font-size:14px; padding-left: 10px; padding-bottom: 5px;\"><b> <label> Issued by </label> <label>" + issuedate + " - </label> " + issuedby + "  <label>| Releashed by </label> <label>" + releasedate + "-" + releaseby + " |  </label> <label> Received by " + received + " - " + contact + " " + relation + "</label>  </b></div>");
+
+                                            compoundHtml.Append("<div style=\" min-width:1376px;\"><table class=\"\" style=\"margin-bottom:50px; margin-left:5px; margin-right:5px; min-width:1366px;\" ><tr><td><b>Organization</b></td><td><b>Transac. Date</b></td>");
+                                            compoundHtml.Append("" +
+                                            "<td><b>Item</b></td>" +
+                                            "<td><b>Dose</b></td>" +
+                                            "<td><b>Frequency</b></td>" +
+                                            "<td><b>Route</b></td>" +
+                                            "<td><b>Instruction</b></td>" +
+                                            "<td><b>Qty</b></td>" +
+                                            "<td><b>UOM</b></td>" +
+                                            "<td><b>Checked</b></td>" +
+                                            "<td><b>Reason</b></td>" +
+                                            "</tr>");
+
+
+
+                                            foreach (var data in listAdmissionFarmasi)//non kompound
+                                            {
+                                                if (dataDate == string.Format("{0:ddd, dd MMM yyyy}", data.AdmissionDate))
+                                                {
+
+                                                    compoundHtml.Append("<tr style=\"padding:5px\"><td style=\"width:84px\">" + data.OrgCode + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:110px\">" + String.Format("{0: dd MMM yyyy}", data.OrderDate) + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:200px\">" + data.ItemName + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:40px\">" + data.Dose + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:80px\">" + data.Frequency + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:95px\">" + data.Route + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:200px\" > " + data.Instruction.ToLower() + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:40px\">" + data.Quantity + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:50px\">" + data.Uom + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:50px\">" + data.Checked + "</td>");
+                                                    compoundHtml.Append("<td style=\"width:40px\">" + data.Reason + "</td>");
+                                                }
+                                            }
+                                            // compoud
+
+                                            compoundHtml.Append("</table></div>");
+                                            //}
+
+
+                                            //}
+
+                                        }
+                                    }
+
+                                    compoundHtml.Append("</div></div></div>");
+                                }
+                              
+                                #endregion
                                 listPrescription = new List<MedicationHistory>();
                                 listCompound = new List<MedicationHistory>();
                                 listConsumables = new List<MedicationHistory>();
+                                listfarmasi = new List<MedicationHistory>();
                                 listHistoryByDoctor = new List<MedicationHistory>();
 
                             }
@@ -690,7 +810,6 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
         }
 
     }
-
 
     void getMedicalHistoryFiltered()
     {
@@ -1069,6 +1188,8 @@ public partial class Form_MedicationHistory : System.Web.UI.Page
                             listCompound = new List<MedicationHistory>();
                             listConsumables = new List<MedicationHistory>();
                             listHistoryByDoctor = new List<MedicationHistory>();
+
+                       
 
                         }
 

@@ -123,6 +123,11 @@
             transition: all 0.5s;
         }
 
+        .testborder{
+            border: 1px solid red;
+            
+        }
+
     </style>
 </head>
     
@@ -236,7 +241,7 @@
                         <div class="filterdata btn-group btn-group-justified" style="background-color: whitesmoke; height: 70px; position: fixed; margin-top: -50px; padding-left: 15px; padding-top: 15px;" role="group" aria-label="...">
                             <table border="0">
                                 <tr>
-                                    <td>Organization </td>
+                                    <td>Organizations </td>
                                     <td>&nbsp; </td>
                                     <td>Encounter Times </td>
                                     <td>&nbsp; </td>
@@ -444,11 +449,38 @@
             </asp:UpdatePanel>
         </div>
              </form>
+    <%--MODAL REALESHED VARMASI--%>
+         <div class="modal fade" id="modal-released-pharmacy">
+            <div class="modal-dialog" style="top: -1%; height: 80%; width: 728px;">
+                <div class="modal-content" style="">
+                    <div class="modal-header" style="height: 35px; padding-top: 7px; padding-bottom: 5px">
+                        <h4 class="modal-title">
+                        <asp:Label runat="server" Font-Bold="true" style="display:inline" ID="Label4" ClientIDMode="Static" Text="Drug Prescription (Pharmacy Edit)"></asp:Label></h4>
+                        <button style="border: none;background: transparent;position: absolute;font-size:14px;font-weight:bold;top: 10px;right: 20px;" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="modal-body" style="margin-top:0px">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <iframe name="Iframereleasedpharmacy" id="Iframereleasedpharmacy" runat="server" style="width: 100%; height: 75vh; border: none;"></iframe>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </body>
 
 
    
 </html>
 
+<script>
+      function showModalRelasedByFarmasi() {
+                    $('#modal-released-pharmacy').modal('show');
+                    return true;
+      }
+</script>
 
 

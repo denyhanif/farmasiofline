@@ -96,6 +96,17 @@ public partial class Form_FormViewer_MedicalResumePatient : System.Web.UI.Page
 
                 return JsonData_PH_Pediatric;
             }
+            else
+            {
+                log.Debug(LogLibrary.Logging("S", "clsPatientHistory.getPatientHistoryData", log_username, "params : " + org_id + "," + ptn_id + "," + adm_id + "," + enc_id + "," + pagesoap_id));
+
+                var JsonResult_PH = clsPatientHistory.getPatientHistoryData(org_id, ptn_id, adm_id, enc_id);
+                var JsonData_PH = JsonConvert.DeserializeObject<ResultPatientHistoryEncounterData>(JsonResult_PH.Result.ToString());
+
+                log.Debug(LogLibrary.Logging("E", "clsPatientHistory.getPatientHistoryData", log_username, ""));
+
+                return JsonData_PH;
+            }
         }
         catch (Exception ex)
         {
@@ -390,7 +401,7 @@ public partial class Form_FormViewer_MedicalResumePatient : System.Web.UI.Page
 
             if(ListDiagnosticProcedureData != null)
             {
-                List<PatientHistoryProcedureDiagnostic> DiagnosticHistory = ListDiagnosticProcedureData.FindAll(x => x.salesItemType.Equals("DIAGNOSTIC") && !x.is_future_order);
+                List<PatientHistoryProcedureDiagnostic> DiagnosticHistory = ListDiagnosticProcedureData.FindAll(x => x.salesItemType.ToUpper().Equals("DIAGNOSTIC") && !x.isFutureOrder);
                 if (DiagnosticHistory.Count != 0)
                 {
                     DataTable tableDisgnosticHistory = Helper.ToDataTable(DiagnosticHistory);
@@ -408,7 +419,7 @@ public partial class Form_FormViewer_MedicalResumePatient : System.Web.UI.Page
                     lbl_othersdiagnosticitem.Text = ListPlanningData.Find(x => x.mappingName == "PLANNING OTHER DIAGNOSTIC").remarks.Replace("\n", "<br />") == "" ? "-" : ListPlanningData.Find(x => x.mappingName == "PLANNING OTHER DIAGNOSTIC").remarks.Replace("\n", "<br />");
                 }
 
-                List<PatientHistoryProcedureDiagnostic> ProcedureHistory = ListDiagnosticProcedureData.FindAll(x => x.salesItemType.Equals("PROCEDURE") && !x.is_future_order);
+                List<PatientHistoryProcedureDiagnostic> ProcedureHistory = ListDiagnosticProcedureData.FindAll(x => x.salesItemType.ToUpper().Equals("PROCEDURE") && !x.isFutureOrder);
                 if (ProcedureHistory.Count != 0)
                 {
                     DataTable tableProcedureHistory = Helper.ToDataTable(ProcedureHistory);
@@ -426,10 +437,10 @@ public partial class Form_FormViewer_MedicalResumePatient : System.Web.UI.Page
                     lbl_othersprocedureitem.Text = ListPlanningData.Find(x => x.mappingName == "PLANNING OTHER PROCEDURE").remarks.Replace("\n", "<br />") == "" ? "-" : ListPlanningData.Find(x => x.mappingName == "PLANNING OTHER PROCEDURE").remarks.Replace("\n", "<br />");
                 }
 
-                List<PatientHistoryProcedureDiagnostic> DiagnosticHistoryFO = ListDiagnosticProcedureData.FindAll(x => x.salesItemType.Equals("DIAGNOSTIC") && x.is_future_order);
+                List<PatientHistoryProcedureDiagnostic> DiagnosticHistoryFO = ListDiagnosticProcedureData.FindAll(x => x.salesItemType.ToUpper().Equals("DIAGNOSTIC") && x.isFutureOrder);
                 if (DiagnosticHistoryFO.Count != 0)
                 {
-                    lblDiagnostic_FO_Date.Text = DiagnosticHistoryFO[0].future_order_date.ToString("dd MMM yyyy");
+                    lblDiagnostic_FO_Date.Text = DiagnosticHistoryFO[0].futureOrderDate.ToString("dd MMM yyyy");
                     DataTable tableDisgnosticHistory = Helper.ToDataTable(DiagnosticHistoryFO);
                     RepeaterDiagnosticFO.DataSource = tableDisgnosticHistory;
                     RepeaterDiagnosticFO.DataBind();
@@ -446,10 +457,10 @@ public partial class Form_FormViewer_MedicalResumePatient : System.Web.UI.Page
                     lbl_othersdiagnosticitemfo.Text = ListPlanningData.Find(x => x.mappingName == "PLANNING OTHER FUTURE DIAGNOSTIC").remarks.Replace("\n", "<br />") == "" ? "-" : ListPlanningData.Find(x => x.mappingName == "PLANNING OTHER FUTURE DIAGNOSTIC").remarks.Replace("\n", "<br />");
                 }
 
-                List<PatientHistoryProcedureDiagnostic> ProcedureHistoryFO = ListDiagnosticProcedureData.FindAll(x => x.salesItemType.Equals("PROCEDURE") && x.is_future_order);
+                List<PatientHistoryProcedureDiagnostic> ProcedureHistoryFO = ListDiagnosticProcedureData.FindAll(x => x.salesItemType.ToUpper().Equals("PROCEDURE") && x.isFutureOrder);
                 if (ProcedureHistoryFO.Count != 0)
                 {
-                    lblProcedure_FO_Date.Text = ProcedureHistoryFO[0].future_order_date.ToString("dd MMM yyyy");
+                    lblProcedure_FO_Date.Text = ProcedureHistoryFO[0].futureOrderDate.ToString("dd MMM yyyy");
                     DataTable tableProcedureHistory = Helper.ToDataTable(ProcedureHistoryFO);
                     RepeaterProcedureFO.DataSource = tableProcedureHistory;
                     RepeaterProcedureFO.DataBind();
