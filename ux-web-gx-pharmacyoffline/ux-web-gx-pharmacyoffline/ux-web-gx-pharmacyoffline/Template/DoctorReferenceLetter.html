@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body style="margin:10px 20px 15px 20px">
+    <table>
+        <tr>
+            <td>
+                Dear <b>[PatientName]</b>
+            </td>
+        </tr>
+        <tr><td style="height:20px"></td></tr>
+        <tr>
+            Terima kasih telah menggunakan jasa
+            <i>teleconsultation</i>
+            <b>[HospitalName]</b>. Berikut adalah lampiran rujukan
+            yang perlu anda bawa saat datang untuk berobat lanjutan di
+            <b>[HospitalName]</b>
+        </tr>
+    </table>
+    <br />
+    <table id="header" style="text-align:center" width="100%">
+        <tr>
+            <td>
+                <img src="https://res.cloudinary.com/siloam/image/upload/v1585537507/EMR-Reference-Doctor/SH-logo-02_1.png" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                [HospitalName]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                [HospitalAddress]
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <table id="header" style="text-align:center" width="100%">
+        <tr>
+            <td>
+                <h1><b>SURAT RUJUKAN</b></h1>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td>
+                Dengan ini menerangkan bahwa pasien berikut ini :
+            </td>
+        </tr>
+    </table>
+    <table style="padding-left:30px">
+        <tr>
+            <td>
+                No. Rekam Medis
+            </td>
+            <td>
+                : [MrNo]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                No. Registrasi
+            </td>
+            <td>
+                : [AdmissionNo]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Nama
+            </td>
+            <td>
+                : [PatientName]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tanggal Lahir
+            </td>
+            <td>
+                : [BirthDate]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Jenis Kelamin
+            </td>
+            <td>
+                : [Gender]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                No. Telepon:
+            </td>
+            <td>
+                : [PhoneNo]
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td>
+                Telah melakukan <i>teleconsultation</i> dengan <b>[CreatedBy]</b> pada <b>[AppointmentDateTime]</b>,
+                dan akan dirujuk untuk pemeriksaan lebih lanjut.
+            </td>
+        </tr>
+    </table>
+    <table style="padding-left:30px">
+        <tr>
+            <td>
+                Pemeriksaan Lanjutan yang dibutuhkan
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <table style="padding-left:80px">
+        <tr>
+            <td style="width:20%">
+                Konsultasi lanjutan dengan dokter  
+            </td>
+            <td>
+                : <b>[NextAppointmentDate]</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tanggal & Jam Appointment Lab/Rad
+            </td>
+            <td>
+                : <b>[Remarks]</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Nama Dokter yang dirujuk
+            </td>
+            <td>
+                : <b>[ReferenceDoctor]</b>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top">
+                Laboratory
+            </td>
+            <td>
+                : [Laboratory]
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top">
+                Radiology
+            </td>
+            <td>
+                : [Radiology]
+            </td>
+        </tr>
+        <tr>
+            <td style="width:20%">
+                Pemeriksaan Lain-Lain
+            </td>
+            <td>
+                : [Others]
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td>
+                [Date], [Time]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Dokter yang merujuk
+            </td>
+        </tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr>
+            <td>
+                [CreatedBy]
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td>
+                Laboratorium
+            </td>
+        </tr>
+        <tr>
+            <td>
+                1.	* Penanda Puasa Laboratorium 10-12 Jam
+            </td>
+        </tr>
+        <tr>
+            <td>
+                2.	** Penanda Puasa Laboratorium 12-14 Jam
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td colspan="2" style="vertical-align:top">
+                Radiologi
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top">1. </td>
+            <td>
+                * Penanda Puasa Radiologi (harap hubungi RS untuk mendapatkan keterangan lebih lanjut)
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top">2. </td>
+            <td>
+                ** Puasa min 4 jam, boleh minum air putih
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top">3. </td>
+            <td>
+                *** Puasa min 6 jam, puasa total
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top">4. </td>
+            <td>
+                **** Puasa min 12 jam, Puasa boleh minum air putih. Persiapan minum obat pencahar malam sebelum pemeriksaan,
+                1 hari sebelum pemeriksaan hanya diperbolehkan makan makanan yg lunak/makan bubur saja
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td>
+                <b>*</b> NB: Surat rujukan ini <b>WAJIB</b> anda perlihatkan saat akan masuk ke <b>[HospitalName]</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>**</b> Untuk setiap pemeriksaan lanjutan (konsultasi/lab/radiologi), harap datang ke rumah sakit sebelum jam perjanjian untuk melalukan registrasi terlebih dahulu.
+            </td>
+        </tr>
+        <tr>
+            <td style="height:30px"></td>
+        </tr>
+        <tr>
+            <td>
+                Terima kasih untuk perhatian anda,
+            </td>
+        </tr>
+        <tr><td style="height:20px"></td></tr>
+        <tr>
+            <td>
+                TTD <b>[HospitalName]</b>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

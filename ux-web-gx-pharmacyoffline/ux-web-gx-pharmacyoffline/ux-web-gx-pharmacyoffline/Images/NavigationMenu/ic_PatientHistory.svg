@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    <defs>
+        <style>
+            .cls-1{fill:none}
+        </style>
+    </defs>
+    <g id="ic_PatientHistory" transform="translate(94 -5171)">
+        <rect id="Rectangle_8467" width="36" height="36" class="cls-1" data-name="Rectangle 8467" rx="4" transform="translate(-94 5171)"/>
+        <g id="Rounded" transform="translate(-90.708 5174.003)">
+            <g id="Group_5628" data-name="Group 5628" transform="translate(1.708 2.997)">
+                <path id="Path_34851" d="M16.507 3A11.542 11.542 0 0 0 4.644 14.531H2.351A.634.634 0 0 0 1.9 15.62l3.574 3.587a.634.634 0 0 0 .91 0l3.577-3.587a.64.64 0 0 0-.461-1.089H7.206a8.965 8.965 0 0 1 9.1-8.968 9.081 9.081 0 0 1 8.84 8.84 8.973 8.973 0 0 1-8.968 9.1 8.833 8.833 0 0 1-5.483-1.9 1.274 1.274 0 0 0-1.691.1H9a1.28 1.28 0 0 0 .1 1.909 11.348 11.348 0 0 0 7.072 2.447A11.542 11.542 0 0 0 27.7 14.2 11.666 11.666 0 0 0 16.507 3z" data-name="Path 34851" transform="translate(-1.708 -2.997)"/>
+                <path id="Path_34852" d="M12.961 8a.968.968 0 0 0-.961.961v4.714a1.3 1.3 0 0 0 .628 1.1l4 2.37a.962.962 0 1 0 .986-1.653L13.922 13.3V8.948A.965.965 0 0 0 12.961 8z" data-name="Path 34852" transform="translate(1.185 -1.59)"/>
+            </g>
+        </g>
+    </g>
+</svg>

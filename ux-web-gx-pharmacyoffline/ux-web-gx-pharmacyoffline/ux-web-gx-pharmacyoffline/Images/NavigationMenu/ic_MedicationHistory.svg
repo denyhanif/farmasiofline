@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#171717}
+        </style>
+    </defs>
+    <g id="ic_MedicationHistory" transform="translate(19661 12931)">
+        <rect id="Rectangle_8467" width="36" height="36" class="cls-1" data-name="Rectangle 8467" rx="4" transform="translate(-19661 -12931)"/>
+        <g id="Group_7834" data-name="Group 7834">
+            <path id="Rectangle_10710" d="M0 0h24v24H0z" class="cls-1" data-name="Rectangle 10710" transform="translate(-19655 -12925)"/>
+            <path id="Subtraction_607" d="M5.2 22.125L1.912 21.1.168 18.68 0 17.476l.756-3.49L13.779 1l2.086-1h2.744l2.66 2.686v5.426l-1.187 1.169a7.917 7.917 0 0 0-3.582-.843 8.009 8.009 0 0 0-8 8 7.916 7.916 0 0 0 .861 3.614L8.207 21.24l-3 .885z" class="cls-1" data-name="Subtraction 607" transform="translate(-19654.504 -12924.438)"/>
+            <path id="Subtraction_606" d="M5.456 23.244a5.467 5.467 0 0 1-3.883-1.63A5.734 5.734 0 0 1 0 17.464a6.551 6.551 0 0 1 2-4.365L13.553 1.552A5.478 5.478 0 0 1 17.414 0a5.79 5.79 0 0 1 5.773 5.773 5.48 5.48 0 0 1-1.552 3.861l-.51.51A8 8 0 0 0 11 11.7L8.789 9.49l6.062-6.206.149-.145a2.984 2.984 0 0 1 2.081-.758 3.678 3.678 0 0 1 .517.037.8.8 0 0 0 .528-.184.533.533 0 0 0 .194-.392.66.66 0 0 0-.578-.722 5.587 5.587 0 0 0-.617-.035 4.074 4.074 0 0 0-2.991 1.19l-.289.289-7.798 7.792-2.886 2.887c-1.677 1.677-2.02 2.828-2.02 4.041a4.575 4.575 0 0 0 1.3 3.32 4.827 4.827 0 0 0 3.32 1.3 5.284 5.284 0 0 0 3.849-1.835 8 8 0 0 0 .535 1.057l-.055.055a6.6 6.6 0 0 1-4.634 2.063z" class="cls-2" data-name="Subtraction 606" transform="translate(-19655 -12925)"/>
+            <g id="Group_7833" data-name="Group 7833" transform="translate(-19644.828 -12914.82)">
+                <ellipse id="Ellipse_2059" cx="5.428" cy="5.665" class="cls-1" data-name="Ellipse 2059" rx="5.428" ry="5.665" transform="translate(1.483 .057)"/>
+                <path id="Path_35239" d="M352.91 16a6.91 6.91 0 1 0 6.91 6.91 6.91 6.91 0 0 0-6.91-6.91zm4.445 7.405h-4.445a.5.5 0 0 1-.5-.5V16.99a.5.5 0 1 1 .99 0v5.424h3.95a.5.5 0 0 1 0 .99z" class="cls-2" data-name="Path 35239" transform="translate(-346 -16)"/>
+            </g>
+        </g>
+    </g>
+</svg>
